@@ -1,0 +1,49 @@
+
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">List <span>users</span> </h1>
+        <table>
+        
+    
+            <table align='center' border='2' width='100%'>
+                <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Date de creation</th>
+                    <th>Role</th>
+                     </thead>
+                    </tr>
+            
+               
+                        {% for user in data %}
+                       <tr>
+                        <td>{{ user.username }}</td> 
+                        <td>{{ user.date_joined}}</td> 
+                        <td>{{ user.role}}</td>
+                        <td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+            
+            
+    
+        
+        
+    
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+
+	

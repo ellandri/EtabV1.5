@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+
+
+{% block body %}
+<section class="grouper">
+   
+    <div class="form-container">
+        <h1>Update Student</h1>
+        <p> <a href="{% url 'students:index' %}">Return <i class="	fas fa-arrow-circle-right"></i></a></p>
+        <form action="" method="post" enctype="multipart/form-data">
+            
+                <div class="form-group">
+                {% csrf_token %}
+                  {{form}}
+              </div>
+              <div class="form-buttons">
+                  <button type="submit" name="action" value="annuler" class="cancel-button">Cancel</button>
+                  <button type="submit" name="action" value="Enregistrer" class="submit-button">Save</button>
+                      </div>
+                  </form>
+
+           <!-- <div class="form-group">
+                <label for="nom"></label>
+                <input type="text" id="nom" placeholder="nom" name="nom">
+            </div>
+            <div class="form-group">
+                <label for="prenom"></label>
+                <input type="text" id="prenom" placeholder="prenom" name="prenom">
+            </div>
+            <div class="form-group gender-group">
+                <label><input type="radio" name="sexe" value="homme"> Homme: </label>
+                <label><input type="radio" name="sexe" value="femme"> Femme: </label>
+            </div>
+            <div class="form-group">
+                <label for="matricule"></label>
+                <input type="text" id="matricule" placeholder="matricule" name="matricule">
+            </div>
+            <div class="form-group">
+                <label for="date_naissance"> </label>
+                <input type="date" id="date_naissance" placeholder="date de naissance" name="date_naissance">
+            </div>
+            <div class="form-group">
+                <label for="classe"></label>
+                <select id="classe" name="classe">
+                    <option value="">Sélectionner une classe</option>
+                    <option value="t1">Tle</option>
+                    <option value="1ere">1ère</option>
+                    <option value="2nd">2nd</option>
+                    <option value="3eme">3ème</option>
+                    <option value="4eme">4ème</option>
+                    <option value="5eme">5ème</option>
+                    <option value="6eme">6ème</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telephone"></label>
+                <input type="text" id="telephone" placeholder="telephone" name="telephone">
+            </div>
+            <div class="form-group">
+                <label for="ville"></label>
+                <input type="text" id="ville"  placeholder="ville" name="ville">
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="cancel-button">Annuler</button>
+                <button type="submit" class="submit-button">Enregistrer</button>
+            </div>
+        </form>
+    </div> -->
+
+</section>
+
+
+{% endblock body %}
+
+

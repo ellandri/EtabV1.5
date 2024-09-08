@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- custom css file link -->
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+{% block title %}
+
+<title>Bienvenue</title>
+
+{% endblock title %}
+
+       
+{% block body %}
+<!-- A propos des articles ... section starts -->
+	
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">The <span>student cards</span> </h1>
+		<p> <a href="{%url 'cards:add' %}"> add cards <i class="fas fa-add"></i></a></p>
+        <table>
+        
+    
+    <table align='center' border='2' width='50%'>
+          <thead>
+        <tr>
+        <th>reference</th>
+        <th>expiration_date</th>
+        <th>issue_date</th>
+       
+        <th>Actions</th>
+         </thead>
+        </tr>
+        
+             {% for card in cards %}
+           <tr>
+            
+            <td>{{ card.reference }}</td> 
+            <td>{{ card.expiration_date }}</td> 
+            <td>{{card.issue_date }}</td>
+           
+            
+       
+            
+            <td>
+           
+                <span class='action_btn'>
+                <button class="delete-button" onclick="confirmDeleteWithSweetAlert('{{ card.id }}');">Delete</button>
+            
+                <a href="{%url 'cards:edit' card.id %}" style='text-decoration: none'>Update</a>           
+             </span>
+            </td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+            
+            
+    
+        
+        
+    
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+</div>
+
+	<script src="code.js"></script>
+
+    <script>
+        
+        function confirmDeleteWithSweetAlert(cardsId) {
+            Swal.fire({
+                title: 'Êtes-vous sûr ?',
+                text: "Vous ne pourrez pas revenir en arrière !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, supprimer !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Rediriger vers l'URL de suppression
+                    window.location.href = "{% url 'cards:delete' 0 %}".replace('0', cardsId);
+                }
+            });
+        }
+    </script>
+	
+{% endblock body %}
+

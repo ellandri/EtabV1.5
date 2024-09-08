@@ -1,0 +1,82 @@
+{% load static %}
+
+<!-- custom css file link -->
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+{% block title %}
+
+<title>Liste des élèves</title>
+
+{% endblock title %}
+
+       
+{% block body %}
+<!-- A propos des articles ... section starts -->
+	
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">List<span>students</span> </h1>
+        <table>
+        
+    
+    <table align='center' border='2' width='100%'>
+        <thead>
+            <tr>
+            <th>birthday</th>
+            <th>last_name</th>
+            <th>first name</th>
+            <th>phone number</th>
+            <th>url picture</th>
+            <th>gender</th>
+            <th>user</th>
+            <th>adress</th> 
+            <th>matricule</th>
+             </thead>
+            </tr>
+            
+                 {% for student in data %}
+               <tr>
+                
+                <td>{{ student.birthday }}</td> 
+                <td>{{ student.last_name }}</td> 
+                <td>{{student.first_name }}</td>
+                <td>{{ student.phone_number }}</td> 
+                <td>{{ student.url_picture  }}</td> 
+                <td>{{ student.gender }}</td> 
+                <td>{{ student.user }}</td> 
+                <td>{{ student.address }}</td> 
+                <td>{{ student.matricule }}</td> 
+           
+                
+                <td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+            
+            
+    
+        
+        
+    
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+</div>
+
+	
+{% endblock body %}
+

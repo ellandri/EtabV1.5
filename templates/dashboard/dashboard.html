@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Welcome</title>
+{% endblock title %}
+			
+	
+	{% block body %}
+
+<!-- A propos des articles ... section starts -->
+	
+<section class="tous" >
+	
+	<h1 class="heading">Dash <span>board</span> </h1>
+		
+		<div class="tablebord">
+		
+		<div class="tables" id="total1">
+		
+			
+			<h3>Number students</h3>
+		
+			
+            <h2>128 100</h2>
+		
+		</div>
+			
+		<div class="tables" id="total2">
+            <h3>Number teachers</h3>
+		
+			
+            <h2>128 100</h2>
+		
+		
+		</div>
+		
+			
+		<div class="tables" id="total3">
+            <h3>Number users</h3>
+		
+            <h2>128 100</h2>
+		
+		</div>
+			
+			
+		<div class="tables" id="total4">
+            <h3>student by gender</h3>
+            <canvas id="genderChart"></canvas>
+		</div>
+
+			
+			</div>
+		
+	
+	
+	</section>
+</div>
+
+
+
+<!--<script src="code.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{%static 'js/graph.js'%}"></script>
+
+{% endblock body %}

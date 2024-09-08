@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- custom css file link -->
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+{% block title %}
+
+<title>Bienvenue</title>
+
+{% endblock title %}
+
+       
+{% block body %}
+<!-- A propos des articles ... section starts -->
+	
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">The <span>setting</span> </h1>
+		<p> <a href="{%url 'app:add' %}"> add App setting<i class="fas fa-add"></i></a></p>
+        <table>
+        
+    
+    <table align='center' border='2' width='50%'>
+          <thead>
+        <tr>
+        <th>app server</th>
+        <th>app port</th>
+        <th>school username</th>
+        <th>school password</th>
+       
+        <th>Actions</th>
+         </thead>
+        </tr>
+        
+             {% for app in apps %}
+           <tr>
+            
+            <td>{{ app.smpt_server }}</td> 
+            <td>{{ app.smpt_port}}</td> 
+            <td>{{ app.smpt_username}}</td> 
+            <td>{{ app.smpt_password}}</td> 
+            <td>
+           
+                <span class='action_btn'>
+                <button class="delete-button" onclick="confirmDeleteWithSweetAlert('{{ app.id }}');">Delete</button>
+            
+                <a href="{%url 'app:edit' app.id %}" style='text-decoration: none'>Update</a>           
+             </span>
+            </td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+            
+            
+    
+        
+        
+    
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+</div>
+
+	<script src="code.js"></script>
+
+    <script>
+        
+        function confirmDeleteWithSweetAlert(appId) {
+            Swal.fire({
+                title: 'Êtes-vous sûr ?',
+                text: "Vous ne pourrez pas revenir en arrière !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, supprimer !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Rediriger vers l'URL de suppression
+                    window.location.href = "{% url 'app:delete' 0 %}".replace('0', appId);
+                }
+            });
+        }
+    </script>
+	
+{% endblock body %}
+

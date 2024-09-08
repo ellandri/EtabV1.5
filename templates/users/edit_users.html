@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block lienCss %}
+    <link rel="stylesheet" href="{%static 'css/ustyle.css'%}">
+{% endblock %}							
+
+
+
+
+{% block body %}
+
+<!--Formulaire -->
+	
+<section class="grouper">
+   
+            <div class="form-container">
+                <h1>{{ title }}</h1>
+                <p> <a href="{% url 'users:index' %}">Return <i class="	fas fa-arrow-circle-right"></i></a></p>
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        {% csrf_token %}
+                        {{form}}
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" name="action" value="Enregistrer" class="submit-button">Save</button>
+                        <button type="submit" name="action" value="annuler" class="cancel-button">Cancel</button>
+                       
+                    </div>
+                </form>
+
+                    <!--  <label for="pseudo"> </label>
+                        <input type="text" id="nom" placeholder="admin" name="pseudo">
+                    </div>
+                    <div class="form-group">
+                        <label for="mot de passe"> </label>
+                        <input type="text" id="prenom" placeholder="ancien mot de passe" name="ancien">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mot de passe"> </label>
+                        <input type="text" id="prenom" placeholder=" nouveau mot de passe" name="nouveau">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="confirmer"> </label>
+                        <input type="text" id="telephone" placeholder="confirmer mot de passe" name="confirm">
+                    </div>
+                   
+                    <div class="form-buttons">
+                        <button type="button" class="cancel-button">Annuler</button>
+                        <button type="submit" class="submit-button">Enregistrer</button>
+                    </div>
+                </form>
+            </div> -->  
+
+        </section>
+
+
+	<script src="code.js"></script>
+	
+    {% endblock body %}

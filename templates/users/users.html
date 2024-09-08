@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{%load static%}
+
+            
+{% block lienCss %}
+    <link rel="stylesheet" href="{%static 'css/ustyle.css'%}">
+    {% endblock %}							
+
+    {% block body %}
+	
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">The <span>Users</span> </h1>
+		<p> <a href="{% url 'users:add' %}"> add user <i class="fas fa-add"></i></a></p>
+        <form method="GET">
+            <input type="text" id="myInput" name="search" value="{{search_field}}" placeholder="Rechercher...">
+            <button onclick=""> Rechercher</button>
+        </form>
+
+    
+        <table>
+        
+    
+    <table align='center' border='2' width='50%'>
+          <thead>
+        <tr>
+        <th>Pseudo</th>
+        <th>Date de creation</th>
+        <th>Role</th>
+        <th>Actions</th>
+         </thead>
+        </tr>
+
+   
+            {% for user in users %}
+           <tr>
+            <td>{{ user.username }}</td> 
+            <td>{{ user.date_joined}}</td> 
+            <td>{{ user.role}}</td>
+            <td>
+            
+                <span class='action_btn'>
+            <a href="{% url 'users:edit' user.id %}" style='text-decoration: none'>Update</a>
+            </span>
+            </td>
+        </tr>
+
+        {% endfor %}
+  
+       
+    </table>
+            
+   
+       
+      </div>
+            
+         
+
+
+</section>
+
+	<!-- <script src="code.js"></script> -->
+	
+    {% endblock body %}
+	
+	
+	
+
+

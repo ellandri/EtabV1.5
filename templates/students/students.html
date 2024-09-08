@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- custom css file link -->
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+{% block title %}
+
+<title>Bienvenue</title>
+
+{% endblock title %}
+
+       
+{% block body %}
+<!-- A propos des articles ... section starts -->
+	
+
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">The <span>Students</span> </h1>
+		<p> <a href="{%url 'students:add' %}"> add students <i class="fas fa-add"></i></a></p>
+        <form method="GET">
+            <input type="text" id="myInput" name="search" value="{{search_field}}" placeholder="Rechercher...">
+            <button onclick=""> Rechercher</button>
+        </form>
+
+        <table>
+        
+    
+    <table align='center' border='2' width='50%'>
+          <thead>
+        <tr>
+        <th>birthday</th>
+        <th>last_name</th>
+        <th>first name</th>
+        <th>phone number</th>
+        <th>url picture</th>
+        <th>gender</th>
+        <th>user</th>
+        <th>adress</th> 
+        <th>matricule</th>
+        <th>Actions</th>
+         </thead>
+        </tr>
+        
+             {% for student in students %}
+           <tr>
+            
+            <td>{{ student.birthday }}</td> 
+            <td>{{ student.last_name }}</td> 
+            <td>{{student.first_name }}</td>
+            <td>{{ student.phone_number }}</td> 
+            <td>{{ student.url_picture  }}</td> 
+            <td>{{ student.gender }}</td> 
+            <td>{{ student.user }}</td> 
+            <td>{{ student.address }}</td> 
+            <td>{{ student.matricule }}</td> 
+       
+            
+            <td>
+           
+                <span class='action_btn'>
+                <button class="delete-button" onclick="confirmDeleteWithSweetAlert('{{ student.id }}');">Delete</button>
+            
+                <a href="{%url 'students:edit' student.id %}" style='text-decoration: none'>Update</a>           
+             </span>
+            </td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+            
+            
+    
+        
+        
+    
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+</div>
+
+	<script src="code.js"></script>
+
+    <script>
+        
+        function confirmDeleteWithSweetAlert(studentId) {
+            Swal.fire({
+                title: 'Êtes-vous sûr ?',
+                text: "Vous ne pourrez pas revenir en arrière !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, supprimer !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Rediriger vers l'URL de suppression
+                    window.location.href = "{% url 'students:delete' 0 %}".replace('0', studentId);
+                }
+            });
+        }
+    </script>
+	
+{% endblock body %}
+

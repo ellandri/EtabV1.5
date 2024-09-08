@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{%load static%}
+
+    
+ {% block lienCss %}
+    <link rel="stylesheet" href="{%static 'css/pstyle.css'%}">
+    {% endblock %}						
+
+
+
+	
+    {% block body %}
+<section>
+
+   
+    <div class="table_responsive">
+
+        <h1 class="heading">The <span>teachers</span> </h1>
+		<p> <a href="{% url 'teachers:add' %}">Add Teachers <i class="fas fa-add"></i></a></p>
+        <form method="GET">
+            <input type="text" id="myInput" name="search" value="{{search_field}}" placeholder="Rechercher...">
+            <button onclick=""> Rechercher</button>
+        </form>
+
+        <table>
+        
+    
+    <table align='center' border='2' width='50%'>
+          <thead>
+        <tr>
+        <th>birthday</th>
+        <th>last_name</th>
+        <th>first_name</th>
+        <th>phone_number</th>
+        <th>url_picture</th>
+        <th>gender</th>
+        <th>user</th>
+        <th>adress</th>
+        <th>Actions</th>
+         </thead>
+        </tr>
+        
+        {% for teacher in teachers %}
+           <tr>
+              
+            <td>{{ teacher.birthday }}</td> 
+            <td>{{ teacher.last_name }}</td> 
+            <td>{{ teacher.first_name }}</td>
+            <td>{{ teacher.phone_number }}</td> 
+            <td>{{ teacher.url_picture  }}</td> 
+            <td>{{ teacher.gender }}</td> 
+            <td>{{ teacher.user }}</td> 
+            <td>{{ teacher.address }}</td> 
+            
+           
+            <td>
+             <span class='action_btn'>
+                <button id="delete" onclick="confirmDeleteWithSweetAlert('{{ teacher.id }}');">Delete</button>
+            
+            
+                <a href="{% url 'teachers:edit' teacher.id %}" style='text-decoration: none'>Update</a>
+            </span>
+            </td>
+           </tr>
+        {% endfor %}
+    </table>
+            
+      </tbody>
+       
+      </div>
+            
+         
+
+
+</section>
+
+</div>
+
+
+	<script src="code.js"></script>
+    <script>
+        
+        function confirmDeleteWithSweetAlert(teacherId) {
+            Swal.fire({
+                title: 'Êtes-vous sûr ?',
+                text: "Vous ne pourrez pas revenir en arrière !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, supprimer !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Rediriger vers l'URL de suppression
+                    window.location.href = "{% url 'teachers:delete' 0 %}".replace('0', teacherId);
+                }
+            });
+        }
+    </script>
+	
+	{% endblock body %}
+	
+	
+	
+

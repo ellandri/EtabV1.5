@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block lienCss %}
+<link rel="stylesheet" href="{%static 'css/lstyle.css'%}">
+{% endblock %}
+
+
+{% block body %}
+<section class="grouper">
+   
+    <div class="form-container">
+        <h1>Update Student</h1>
+        <p> <a href="{% url 'cards:index' %}">Return <i class="	fas fa-arrow-circle-right"></i></a></p>
+        <form action="" method="post" enctype="multipart/form-data">
+            
+                <div class="form-group">
+                {% csrf_token %}
+                  {{form}}
+              </div>
+              <div class="form-buttons">
+                  <button type="submit" name="action" value="annuler" class="cancel-button">Cancel</button>
+                  <button type="submit" name="action" value="Enregistrer" class="submit-button">Save</button>
+                      </div>
+                  </form>
+
+           
+
+</section>
+
+
+{% endblock body %}
+
+
