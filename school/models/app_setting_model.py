@@ -6,4 +6,3 @@ class AppSettingModel(DateTimeModel):
     smpt_port = models.PositiveIntegerField()
     smpt_username = models.CharField(max_length=50)
     smpt_password = models.CharField(max_length=50)
-   

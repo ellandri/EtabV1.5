@@ -2,9 +2,15 @@ from django.shortcuts import render,redirect, get_object_or_404
 from ..forms import SchoolForm, AppSettingForm
 from school.models.school_model import  SchoolModel
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-#@login_required(login_url='dashboard:connect')
 
+
+
+
+
+
+@login_required(login_url='dashboard:connect')
 def school(request):
   # students = Students.objects.filter(is_deleted=False)
    schools = SchoolModel.objects.all() 
@@ -21,14 +27,14 @@ def add_school(request):
             school_form.save()
 
             messages.success(request, 'School added successfully!')
-            return redirect('users:add')
+            return redirect('dashboard:connect')
         else:
             print('gggggg')
             messages.error(request, 'Please correct the errors below.')
     else:
         school_form = SchoolForm()
 
-    return render(request, 'schools/conn/add_school.html', {'school_form': school_form})
+    return render(request, 'schools/add_school.html', {'school_form': school_form})
 
 
 
@@ -67,10 +73,11 @@ def delete_school_(request, id):
 
     return redirect('school:index')
 
+
 def check_school(request):
     schools = SchoolModel.objects.all()
     if not schools:
         return redirect('school:add')
     else:
-        return redirect('dashboard:index')
+        return redirect('dashboard:connect')
     

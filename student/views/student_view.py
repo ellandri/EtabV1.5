@@ -3,12 +3,12 @@ from student.forms import StudentsForm
 from base.forms import AdressForm
 from student.models.student_model import StudentModel
 from base.models.address_model import AddressModel
-
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 
 
-
+@login_required(login_url='dashboard:connect')
 def students(request):
     search_field = request.GET.get('search')
     if search_field :

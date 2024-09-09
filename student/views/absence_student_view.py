@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from ..forms import AbsenceModelForm
-
+from django.contrib.auth.decorators import login_required
 from student.models.absence_student_model import AbsenceModel
 
 
@@ -8,7 +8,7 @@ from student.models.absence_student_model import AbsenceModel
 # Create your views here.
 
 
-
+@login_required(login_url='dashboard:connect')
 def absence_student(request):
 
    absences = AbsenceModel.objects.all() 

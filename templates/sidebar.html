@@ -21,12 +21,15 @@
             </a>
             
         </li>
+       
         <li>
-        <a href="{%url 'app:index' %}">
+            
+        <a href="{% url 'app:index' %}">
             <i class="fas fa-user"></i>
             <span>App setting</span>
-        
+           
         </a>
+        
         </li> 
     
     
@@ -87,16 +90,14 @@
             
     
     <li>
-        <a href="{%url 'dashboard:connect' %}"> 
-        <i class="fas fa-sign-out-alt"></i>  </a>
+        <a href="{% url 'dashboard:connect' %}">
+            <i class="fas fa-sign-out-alt"></i>  </a>
         <span>Deconnect</span> 
         
                                                         
     </li>                        
-                                                
         </ul>
        </div> 
-    
        <div class="main--content">
         <div class="header--wrapper">
         

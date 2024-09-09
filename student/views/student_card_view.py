@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from ..forms import StudentsCardsModelForm
-
+from django.contrib.auth.decorators import login_required
 from student.models.student_cards_model import StudentCards
 
 
@@ -8,7 +8,7 @@ from student.models.student_cards_model import StudentCards
 # Create your views here.
 
 
-
+@login_required(login_url='dashboard:connect')
 def student_cards(request):
   # students = Students.objects.filter(is_deleted=False)
    cards = StudentCards.objects.all() 

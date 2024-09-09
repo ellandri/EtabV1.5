@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect, get_object_or_404
 from ..forms import SchoolForm, AppSettingForm
 from school.models.app_setting_model import  AppSettingModel
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-#@login_required(login_url='dashboard:connect')
 
+@login_required(login_url='dashboard:connect')
 def app(request):
   # students = Students.objects.filter(is_deleted=False)
+  
    apps = AppSettingModel.objects.all() 
    return render(request, 'schools/app.html',{'apps':apps})
 
@@ -28,7 +30,7 @@ def add_app(request):
     else:
         app_form = AppSettingForm()
 
-    return render(request, 'schools/conn/add_app.html', {'app_form': app_form})
+    return render(request, 'schools/add_app.html', {'app_form': app_form})
 
 
 
@@ -38,7 +40,7 @@ def add_app(request):
 def edit_app(request, id):
     
     app = get_object_or_404(AppSettingModel, id=id)  
-
+    
     
     if request.method == "POST":
         app_form = AppSettingForm(request.POST, instance=app)
@@ -69,6 +71,7 @@ def delete_app(request, id):
 
 def check_settings(request):
     apps = AppSettingModel.objects.all()
+    
     if not apps:
         return redirect('app:add')
     else:

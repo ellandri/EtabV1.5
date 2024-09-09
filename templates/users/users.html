@@ -43,15 +43,17 @@
             <td>{{ user.role}}</td>
             <td>
             
-                <span class='action_btn'>
+            <span class='action_btn'>
             <a href="{% url 'users:edit' user.id %}" style='text-decoration: none'>Update</a>
+            {% if user.is_active %}
+            <a href="{% url 'users:deactivate_user' user.id %}" style='text-decoration: none'>Désactiver</a></td>
+            {% else %}
+            Désactivé
+            {% endif %}        
             </span>
             </td>
         </tr>
-
         {% endfor %}
-  
-       
     </table>
             
    
